@@ -41,7 +41,7 @@ ADClido = analogRead(LM35);
   float tempAtual;
 temperatura = (ADClido * (500.0/1023)) - 50.0;
 Serial.println(temperatura);
-////////////////////////////////////////////
+//////////////// APAGAR - TEMPERATURA ////////////////////////
   if(temperatura >= tempIni + 2 && controle[0] == 0){ // apaga o primeiro
     for(pwm = 255; pwm > 0; pwm--){
   		analogWrite(led[0], pwm);
@@ -62,18 +62,21 @@ Serial.println(temperatura);
   		analogWrite(led[2], pwm);
   		delay(10);
   }
-      	controle[2] = 1;
-    //Apitar buzzer a cada 2 segundos
-    if (millis() >= (tempoAnt + 500)) 
-  {
-      Serial.println('aaaa');
-    //digitalWrite(Buzzer, HIGH);
-      //delay(100);
-      //digitalWrite(Buzzer, LOW);
-    tempoAnt = millis();  // get the current millis so we can reset this sub counter
+      	controle[2] = 1;  
   }
     
+  //Apitar buzzer a cada 2 segundos
+    if (temperatura >= tempIni + 6 && millis() >= (tempoAnt + 2000)) 
+  {
+    digitalWrite(Buzzer, HIGH);
+    tempoAnt = millis();
   }
+  else{
+  	digitalWrite(Buzzer, LOW);
+  }
+  
+  
+  //////////////// ACENDER - TEMPERATURA ////////////////////////
   tempAtual = tempIni + 6;
   if(temperatura <= tempAtual - 2 && controle[2] == 1){ //acendendo todos
     for(pwm = 0; pwm < 255; pwm++){
@@ -98,12 +101,6 @@ Serial.println(temperatura);
   }
   // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
  // Serial.println(temperatura); // colocar o millis()
-  
-/*
-for(int i = 255; i > 0; i--){
-  analogWrite(led[0], i);
-  delay(10);
-  }
-  */
+
 ///////////////////////////////////////////////  
 }
