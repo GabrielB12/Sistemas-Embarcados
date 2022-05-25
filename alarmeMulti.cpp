@@ -8,7 +8,7 @@ float temperatura = 0;
 float tempIni = 0;
 int pwm = 0;
 int controle[] = {0, 0, 0}; // variaveis de controle para saber se entra no if ou não
-int controle1[] = {0, 0, 0};
+int controle1[] = {0, 0, 0, 0};
 int controleBuzz = 0;
 
 unsigned long tempoAnt;     // variavél para salvar o tempo da iteração anterior
@@ -32,7 +32,7 @@ void setup()
         digitalWrite(led[i], HIGH);
     }
     // LEDS DE LUMINOSIDADE APAGADOS
-    for (int i = 3; i < 6; i++)
+    for (int i = 3; i < 7; i++)
     {
         digitalWrite(led[i], LOW);
     }
@@ -145,13 +145,11 @@ void loop()
         controle[0] = 0; // voltando para 0, para poder entrar no if novamente
     }
     // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
-    /*
      if (millis() >= (tempoImprime + 1000))
     {
       Serial.println(temperatura);
       tempoImprime = millis();
     }
-    */
 
     ////////////////// PARTE DE LUMINOSIDADE ////////////////////////
     // ValorLDR
@@ -180,7 +178,7 @@ void loop()
         }
         controle1[1] = 1;
     }
-    if (ValorLDR > 900 && controle1[2] == 0)
+    if (ValorLDR > 800 && controle1[2] == 0)
     {
         for (pwm = 0; pwm < 255; pwm++)
         {
@@ -192,6 +190,18 @@ void loop()
         }
         controle1[2] = 1;
     }
+  	if (ValorLDR > 900 && controle1[3] == 0)
+    {
+        for (pwm = 0; pwm < 255; pwm++)
+        {
+            analogWrite(led[6], pwm);
+            periodo = millis();
+            while (millis() < periodo + 1)
+            {
+            }
+        }
+        controle1[3] = 1;
+    }
     if (ValorLDR > 920 && controleBuzz == 0)
     {
         digitalWrite(Buzzer, HIGH);
@@ -202,13 +212,25 @@ void loop()
         }
         digitalWrite(Buzzer, LOW);
     }
-    if (ValorLDR < 900 && controle1[2] == 1)
+  if (ValorLDR < 900 && controle1[3] == 1)
+    {
+        for (pwm = 255; pwm > 0; pwm--)
+        {
+            analogWrite(led[6], pwm);
+            periodo = millis();
+            while (millis() < periodo + 16) // vai apagando por 4 segundos (16*255)
+            {
+            }
+        }
+        controle1[3] = 0;
+    }
+    if (ValorLDR < 800 && controle1[2] == 1)
     {
         for (pwm = 255; pwm > 0; pwm--)
         {
             analogWrite(led[5], pwm);
             periodo = millis();
-            while (millis() < periodo + 1)
+            while (millis() < periodo + 16) // vai apagando por 4 segundos (16*255)
             {
             }
         }
@@ -221,7 +243,7 @@ void loop()
         {
             analogWrite(led[4], pwm);
             periodo = millis();
-            while (millis() < periodo + 1)
+            while (millis() < periodo + 16) // vai apagando por 4 segundos (16*255)
             {
             }
         }
@@ -234,7 +256,7 @@ void loop()
         {
             analogWrite(led[3], pwm);
             periodo = millis();
-            while (millis() < periodo + 1)
+            while (millis() < periodo + 16) // vai apagando por 4 segundos (16*255)
             {
             }
         }
