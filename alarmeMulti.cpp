@@ -10,7 +10,7 @@ int pwm = 0;
 int controle[] = {0, 0, 0}; // variaveis de controle para saber se entra no if ou não
 
 unsigned long tempoAnt;   // variavél para salvar o tempo da iteração anterior
-unsigned long tempoAtual; // tempo da iteração atial
+unsigned long tempoImprime; // tempo da iteração atial
 unsigned long periodo;    // comparação para o millis
 
 
@@ -100,7 +100,11 @@ Serial.println(temperatura);
     controle[0] = 0; //voltando para 0, para poder entrar no if novamente
   }
   // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
- // Serial.println(temperatura); // colocar o millis()
+   if (millis() >= (tempoImprime + 1000)) 
+  {
+    Serial.println(temperatura);
+    tempoImprime = millis();
+  }
 
 ///////////////////////////////////////////////  
 }
