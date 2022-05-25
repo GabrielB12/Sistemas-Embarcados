@@ -9,11 +9,14 @@ float tempIni = 0;
 int pwm = 0;
 int controle[] = {0, 0, 0}; // variaveis de controle para saber se entra no if ou não
 
-
+unsigned long tempoAnt;   // variavél para salvar o tempo da iteração anterior
+unsigned long tempoAtual; // tempo da iteração atial
+unsigned long periodo;    // comparação para o millis
 
 
 void setup(){
   Serial.begin(9600);
+  tempoAnt = millis();
   
 for(int x = 0; x < 7 ; x++){
 pinMode(led[x], OUTPUT);
@@ -29,6 +32,10 @@ for(int i = 0; i < 3; i++){
 }
 
 void loop(){
+// VARIAVEIS PARA CONTROLE DO TEMPO
+tempoAtual = millis();
+periodo = tempoAtual - tempoAnt;
+  
 ValorLDR = analogRead(LDR);
 ADClido = analogRead(LM35);
   float tempAtual;
@@ -56,11 +63,15 @@ Serial.println(temperatura);
   		delay(10);
   }
       	controle[2] = 1;
-    
     //Apitar buzzer a cada 2 segundos
-    digitalWrite(Buzzer, HIGH);
-    digitalWrite(Buzzer, LOW);
-    delay(2000); //esperar 2 segundos - fazer com millis()
+    if (millis() >= (tempoAnt + 500)) 
+  {
+      Serial.println('aaaa');
+    //digitalWrite(Buzzer, HIGH);
+      //delay(100);
+      //digitalWrite(Buzzer, LOW);
+    tempoAnt = millis();  // get the current millis so we can reset this sub counter
+  }
     
   }
   tempAtual = tempIni + 6;
@@ -86,7 +97,7 @@ Serial.println(temperatura);
     controle[0] = 0; //voltando para 0, para poder entrar no if novamente
   }
   // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
-  Serial.println(temperatura); // colocar o millis()
+ // Serial.println(temperatura); // colocar o millis()
   
 /*
 for(int i = 255; i > 0; i--){
@@ -95,46 +106,4 @@ for(int i = 255; i > 0; i--){
   }
   */
 ///////////////////////////////////////////////  
-/*
-if (temperatura > 20.00){
-digitalWrite(led[0], HIGH);
-}
-else{
-digitalWrite(led[0], LOW);
-}
-if (temperatura > 22.00){
-digitalWrite(led[1], HIGH);
-}
-else{
-digitalWrite(led[1], LOW);
-}
-if (temperatura > 24.00){
-digitalWrite(led[2], HIGH);
-}
-else{
-digitalWrite(led[2], LOW);
-}
-if (ValorLDR > 500){
-digitalWrite(led[5], HIGH);
-}
-else{
-digitalWrite(led[5], LOW);
-}
-
-if (ValorLDR > 400){
-digitalWrite(led[4], HIGH);
-}
-else{
-digitalWrite(led[4], LOW);
-}
-if (ValorLDR > 350){
-digitalWrite(led[3], HIGH);
-digitalWrite(led[6], LOW);
-digitalWrite(Buzzer, LOW);
-}
-else{
-digitalWrite(led[3], LOW);
-digitalWrite(led[6], HIGH);
-digitalWrite(Buzzer, HIGH);
-}*/
 }
