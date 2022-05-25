@@ -5,8 +5,9 @@ const int led[] = {5,6,7,8,9,10,11}; // leds 5, 6 e 7 são os de temperatura, (l
 int ValorLDR = 0;
 int ADClido = 0;
 float temperatura = 0;
-float tempAnt = 0;
+float tempIni = 0;
 int pwm = 0;
+int controle[] = {0, 0, 0}; // variaveis de controle para saber se entra no if ou não
 
 
 
@@ -22,14 +23,71 @@ pinMode(Buzzer,OUTPUT);
 for(int i = 0; i < 3; i++){
   digitalWrite(led[i], HIGH);
 }
+  // PRIMEIRO VALOR DE TEMPERATURA MEDIDO
+  tempIni = analogRead(LM35);
+  tempIni = (tempIni * (500.0/1023)) - 50.0;
 }
+
 void loop(){
 ValorLDR = analogRead(LDR);
 ADClido = analogRead(LM35);
+  float tempAtual;
 temperatura = (ADClido * (500.0/1023)) - 50.0;
 Serial.println(temperatura);
-tempAnt = temperatura;
 ////////////////////////////////////////////
+  if(temperatura >= tempIni + 2 && controle[0] == 0){ // apaga o primeiro
+    for(pwm = 255; pwm > 0; pwm--){
+  		analogWrite(led[0], pwm);
+  		delay(10);
+  }
+      	controle[0] = 1;
+  }
+  if(temperatura >= tempIni + 4 && controle[1] == 0){ // apaga o segundo
+  	for(pwm = 255; pwm > 0; pwm--){
+  		analogWrite(led[1], pwm);
+  		delay(10);
+  }
+      	controle[1] = 1;
+  }
+  if(temperatura >= tempIni + 6 && controle[2] == 0){ // apaga o terceiro
+    
+    for(pwm = 255; pwm > 0; pwm--){
+  		analogWrite(led[2], pwm);
+  		delay(10);
+  }
+      	controle[2] = 1;
+    
+    //Apitar buzzer a cada 2 segundos
+    digitalWrite(Buzzer, HIGH);
+    digitalWrite(Buzzer, LOW);
+    delay(2000); //esperar 2 segundos - fazer com millis()
+    
+  }
+  tempAtual = tempIni + 6;
+  if(temperatura <= tempAtual - 2 && controle[2] == 1){ //acendendo todos
+    for(pwm = 0; pwm < 255; pwm++){
+  		analogWrite(led[2], pwm);
+  		delay(10);
+  }
+    controle[2] = 0; //voltando para 0, para poder entrar no if novamente
+  }
+  if(temperatura <= tempAtual - 4 && controle[1] == 1){
+  	for(pwm = 0; pwm < 255; pwm++){
+  		analogWrite(led[1], pwm);
+  		delay(10);
+  }
+    controle[1] = 0; //voltando para 0, para poder entrar no if novamente
+  }
+  if(temperatura <= tempAtual - 6 && controle[0] == 1){
+  	for(pwm = 0; pwm < 255; pwm++){
+  		analogWrite(led[0], pwm);
+  		delay(10);
+  }
+    controle[0] = 0; //voltando para 0, para poder entrar no if novamente
+  }
+  // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
+  Serial.println(temperatura); // colocar o millis()
+  
 /*
 for(int i = 255; i > 0; i--){
   analogWrite(led[0], i);
