@@ -38,18 +38,23 @@ void setup()
     }
     // PRIMEIRO VALOR DE TEMPERATURA MEDIDO
     tempIni = analogRead(LM35);
-    tempIni = (tempIni * (500.0 / 1023)) - 50.0;
+    tempIni = tempIni * 0.4887585532;
 }
 
 void loop()
 {
 
     ValorLDR = analogRead(LDR);
-    Serial.println(ValorLDR);
     ADClido = analogRead(LM35);
     float tempAtual;
-    temperatura = (ADClido * (500.0 / 1023)) - 50.0;
-    Serial.println(temperatura);
+    temperatura = ADClido * 0.4887585532;
+     // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
+    if (millis() >= (tempoImprime + 1000))
+    {
+      Serial.println(temperatura);
+      //Serial.println(ValorLDR);
+      tempoImprime = millis();
+    }
     //////////////// APAGAR - TEMPERATURA ////////////////////////
     if (temperatura >= tempIni + 2 && controle[0] == 0)
     { // apaga o primeiro
@@ -144,17 +149,11 @@ void loop()
         }
         controle[0] = 0; // voltando para 0, para poder entrar no if novamente
     }
-    // MOSTRAR A TEMPERATURA A CADA 1 SEGUNDO NO MONITOR SERIAL
-     if (millis() >= (tempoImprime + 1000))
-    {
-      Serial.println(temperatura);
-      tempoImprime = millis();
-    }
 
     ////////////////// PARTE DE LUMINOSIDADE ////////////////////////
     // ValorLDR
 
-    if (ValorLDR > 500 && controle1[0] == 0)
+    if (ValorLDR > 10 && controle1[0] == 0)
     {
         for (pwm = 0; pwm < 255; pwm++)
         {
@@ -166,7 +165,7 @@ void loop()
         }
         controle1[0] = 1;
     }
-    if (ValorLDR > 700 && controle1[1] == 0)
+    if (ValorLDR > 30 && controle1[1] == 0)
     {
         for (pwm = 0; pwm < 255; pwm++)
         {
@@ -178,7 +177,7 @@ void loop()
         }
         controle1[1] = 1;
     }
-    if (ValorLDR > 800 && controle1[2] == 0)
+    if (ValorLDR > 55 && controle1[2] == 0)
     {
         for (pwm = 0; pwm < 255; pwm++)
         {
@@ -190,7 +189,7 @@ void loop()
         }
         controle1[2] = 1;
     }
-  	if (ValorLDR > 900 && controle1[3] == 0)
+    if (ValorLDR > 130 && controle1[3] == 0)
     {
         for (pwm = 0; pwm < 255; pwm++)
         {
@@ -202,17 +201,17 @@ void loop()
         }
         controle1[3] = 1;
     }
-    if (ValorLDR > 920 && controleBuzz == 0)
+    if (ValorLDR > 150 && controleBuzz == 0)
     {
         digitalWrite(Buzzer, HIGH);
         controleBuzz = 1;
         unsigned long int esp = millis();
-        while (millis() - esp < 1000) // apita por 3 segundos
+        while (millis() - esp < 3000) // apita por 3 segundos
         {
         }
         digitalWrite(Buzzer, LOW);
     }
-  if (ValorLDR < 900 && controle1[3] == 1)
+  if (ValorLDR < 130 && controle1[3] == 1)
     {
         for (pwm = 255; pwm > 0; pwm--)
         {
@@ -224,7 +223,7 @@ void loop()
         }
         controle1[3] = 0;
     }
-    if (ValorLDR < 800 && controle1[2] == 1)
+    if (ValorLDR < 55 && controle1[2] == 1)
     {
         for (pwm = 255; pwm > 0; pwm--)
         {
@@ -237,7 +236,7 @@ void loop()
         controle1[2] = 0;
     }
 
-    if (ValorLDR < 700 && controle1[1] == 1)
+    if (ValorLDR < 30 && controle1[1] == 1)
     {
         for (pwm = 255; pwm > 0; pwm--)
         {
@@ -250,7 +249,7 @@ void loop()
         controle1[1] = 0;
     }
 
-    if (ValorLDR < 500 && controle1[0] == 1)
+    if (ValorLDR < 10 && controle1[0] == 1)
     {
         for (pwm = 255; pwm > 0; pwm--)
         {
