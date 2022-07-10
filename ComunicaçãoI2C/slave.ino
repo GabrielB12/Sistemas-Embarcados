@@ -13,6 +13,9 @@ const int bot2 = 9;
 int apertado1 = 0;
 int apertado2 = 0;
 
+int flagLCD;
+String lcd_str;
+
 unsigned long int lastDebounceTime1 = 0; 
 unsigned long int lastDebounceTime2 = 0;
 unsigned long int debounceDelay = 50;
@@ -37,17 +40,21 @@ void setup() {
   pinMode(bot2, INPUT);
   
   lcd.init();
-  lcd.setBacklight(HIGH);
+  
+  flagLCD = 0;
+  lcd_str = "";
 }
-
 
 
 const int max = 20;
 String str; // String que recebe os comandos
+String aux;
+int teste = 0;
 
 
 
 void receiveEvent(int bytes) {
+  String aux;
 
   while(Wire.available())
 {
@@ -72,14 +79,29 @@ void receiveEvent(int bytes) {
     str = ""; // limpar a string para próximo comando
   }
   else if(str == "Display LCD"){
-    Serial.println("digitar no lcd");
-    str = ""; // limpar a string para próximo comando
+    str = "";
+    teste = 1;
+  }
+  else if(teste == 1){
+  	flagLCD = 1;
+    teste = 0;
   }
 }
+
 
 void loop() {
   int reading1 = digitalRead(bot1);
   int reading2 = digitalRead(bot2);
+
+    if (flagLCD == 1) {
+    lcd.clear();
+     lcd.setBacklight(HIGH);
+    lcd.setCursor(0, 0);
+    lcd.print(str);
+    flagLCD = 0;
+    str = "";
+  }
+    
   
     if (reading1 != lastButtonState1)
     {
@@ -98,15 +120,13 @@ void loop() {
             if (buttonState1 == HIGH)
             {
                 estadoBot = 1; //apertou o 1
-              	Serial.println("liga 1");
             }
           else{
-            	estadoBot = 2; //soltou o 1
-            Serial.println("desliga 1");
+              estadoBot = 2; //soltou o 1
           }
         }
     }
-  	if ((millis() - lastDebounceTime2) > debounceDelay)
+    if ((millis() - lastDebounceTime2) > debounceDelay)
     {
         if (reading2 != buttonState2)
         {
@@ -114,11 +134,9 @@ void loop() {
             if (buttonState2 == HIGH)
             {
                 estadoBot = 3; //apertou o 2
-              Serial.println("liga 2");
             }
           else{
-            	estadoBot = 4; //soltou o 2
-            Serial.println("desliga 2");
+              estadoBot = 4; //soltou o 2
           }
         }
     }
