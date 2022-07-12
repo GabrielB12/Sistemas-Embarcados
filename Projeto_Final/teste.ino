@@ -92,6 +92,36 @@ void loop () {
     if(input == 'z' || input == 'Z'){
       lZ();
     }
+    if(input == '0'){
+      l0();
+    }
+    if(input == '1'){
+      l1();
+    }
+    if(input == '2'){
+      l2();
+    }
+    if(input == '3'){
+      l3();
+    }
+    if(input == '4'){
+      l4();
+    }
+    if(input == '5'){
+      l5();
+    }
+    if(input == '6'){
+      l6();
+    }
+    if(input == '7'){
+      l7();
+    }
+    if(input == '8'){
+      l8();
+    }
+    if(input == '9'){
+      l9();
+    }
     if(input == ' '){
       wordPause();
     }
@@ -257,6 +287,97 @@ void lZ () {
   barra();
   barra();
   ponto();
+  ponto();
+  letterPause();
+}
+
+// Funções dos números
+void l0 () {
+  barra();
+  barra();
+  barra();
+  barra();
+  barra();
+  letterPause();
+}
+
+void l1{
+  ponto();
+  barra();
+  barra();
+  barra();
+  barra();
+  letterPause();
+}
+
+void l2{
+  ponto();
+  ponto();
+  barra();
+  barra();
+  barra();
+  letterPause();
+}
+
+void l3{
+  ponto();
+  ponto();
+  ponto();
+  barra();
+  barra();
+  letterPause();
+}
+
+void l4{
+  ponto();
+  ponto();
+  ponto();
+  ponto();
+  barra();
+  letterPause();
+}
+
+void l5{
+  ponto();
+  ponto();
+  ponto();
+  ponto();
+  ponto();
+  letterPause();
+}
+
+void l6{
+  barra();
+  ponto();
+  ponto();
+  ponto();
+  ponto();
+  letterPause();
+}
+
+void l7{
+  barra();
+  barra();
+  ponto();
+  ponto();
+  ponto();
+  letterPause();
+}
+
+void l8{
+  barra();
+  barra();
+  barra();
+  ponto();
+  ponto();
+  letterPause();
+}
+
+void l8{
+  barra();
+  barra();
+  barra();
+  barra();
   ponto();
   letterPause();
 }
