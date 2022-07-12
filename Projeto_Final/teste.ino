@@ -11,14 +11,30 @@ Serial.begin(9600);//for the connect with the boared
 void loop () {
 if (Serial.available()) {
 input = Serial.read();//read the input
-if (input == ‘a’ || input == ‘A’) {lA();}//if the input is a or A go to function lA
-if (input == ‘b’ || input == ‘B’) {lB();}//same but with b letter
-if (input == ‘c’ || input == ‘C’) {lC();}
-if (input == ‘d’ || input == ‘D’) {lD();}
-if (input == ‘e’ || input == ‘E’) {lE();}
-if (input == ‘f’ || input == ‘F’) {lF();}
-if (input == ‘g’ || input == ‘G’) {lG();}
-if (input == ‘h’ || input == ‘H’) {lH();}
+if (input == ‘a’ || input == ‘A’) {//if the input is a or A go to function lA
+  lA();
+}
+if (input == ‘b’ || input == ‘B’) {
+  lB();
+}//same but with b letter
+if (input == ‘c’ || input == ‘C’) {
+  lC();
+}
+if (input == ‘d’ || input == ‘D’) {
+  lD();
+}
+if (input == ‘e’ || input == ‘E’) {
+  lE();
+}
+if (input == ‘f’ || input == ‘F’) {
+  lF();
+}
+if (input == ‘g’ || input == ‘G’) {
+  lG();
+}
+if (input == ‘h’ || input == ‘H’) {
+  lH();
+}
 if (input == ‘i’ || input == ‘I’) {lI();}
 if (input == ‘j’ || input == ‘J’) {lJ();}
 if (input == ‘k’ || input == ‘K’) {lK();}
