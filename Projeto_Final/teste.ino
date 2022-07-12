@@ -11,9 +11,9 @@ Serial.begin(9600);//for the connect with the boared
 void loop () {
 if (Serial.available()) {
 input = Serial.read();//read the input
-if (input == ‘a’ || input == ‘A’) {//if the input is a or A go to function lA
-  lA();
-}
+  if(input == "a" || input == "A"){
+    lA();
+  }
 if (input == ‘b’ || input == ‘B’) {
   lB();
 }//same but with b letter
