@@ -301,7 +301,7 @@ void l0 () {
   letterPause();
 }
 
-void l1{
+void l1(){
   ponto();
   barra();
   barra();
@@ -310,7 +310,7 @@ void l1{
   letterPause();
 }
 
-void l2{
+void l2(){
   ponto();
   ponto();
   barra();
@@ -319,7 +319,7 @@ void l2{
   letterPause();
 }
 
-void l3{
+void l3(){
   ponto();
   ponto();
   ponto();
@@ -328,7 +328,7 @@ void l3{
   letterPause();
 }
 
-void l4{
+void l4(){
   ponto();
   ponto();
   ponto();
@@ -337,7 +337,7 @@ void l4{
   letterPause();
 }
 
-void l5{
+void l5(){
   ponto();
   ponto();
   ponto();
@@ -346,7 +346,7 @@ void l5{
   letterPause();
 }
 
-void l6{
+void l6(){
   barra();
   ponto();
   ponto();
@@ -355,7 +355,7 @@ void l6{
   letterPause();
 }
 
-void l7{
+void l7(){
   barra();
   barra();
   ponto();
@@ -364,7 +364,7 @@ void l7{
   letterPause();
 }
 
-void l8{
+void l8(){
   barra();
   barra();
   barra();
@@ -373,7 +373,7 @@ void l8{
   letterPause();
 }
 
-void l8{
+void l9(){
   barra();
   barra();
   barra();
