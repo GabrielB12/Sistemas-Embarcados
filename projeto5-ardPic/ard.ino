@@ -20,23 +20,23 @@ void loop()
           //Serial1.write(incomingByte);
       }
       if(str == "LigarLed B7"){
-          Serial1.write(1);
+          Serial1.write(1000);
           str = "";
-      }
+     
       else if(str == "DesligarLed B7"){
-          Serial1.write(2);
+          Serial1.write(2000);
           str = "";
       }
       else if(str == "AcionarBuzzer"){
-          Serial1.write(3);
+          Serial1.write(3000);
           str = "";
       } 
      else if(str == "DesligarBuzzer"){
-          Serial1.write(4);
+          Serial1.write(4000);
           str = "";
       }
      else if(str == "LigarVento"){
-          while(!Serial.available){
+          while(!Serial.available()){
             continue;
           }
           vel = Serial.read();
@@ -44,7 +44,7 @@ void loop()
           str = "";
       }
      else if(str == "DesligarVento"){
-          Serial1.write(5);
+          Serial1.write(5000);
           str = "";
       }
      }
