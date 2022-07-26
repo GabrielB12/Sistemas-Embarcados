@@ -3,6 +3,7 @@ int Control = 1;  // +++++++ VARIAVEL DE CONTROLE DA COMUNICAÇÃO ++++++++
                   // LEMBRE DE ALTERAR ESSA VARIÁVEL TAMBEM NO PIC
                   
 char incomingByte;
+int vel;
 String str;
 
 void setup() {
@@ -35,11 +36,15 @@ void loop()
           str = "";
       }
      else if(str == "LigarVento"){
-          Serial1.write(5);
+          while(!Serial.available){
+            continue;
+          }
+          vel = Serial.read();
+          Serial1.write(vel);
           str = "";
       }
      else if(str == "DesligarVento"){
-          Serial1.write(6);
+          Serial1.write(5);
           str = "";
       }
      }
