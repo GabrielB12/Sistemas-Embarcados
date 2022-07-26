@@ -27,6 +27,7 @@ String str;
 void setup()
 {
     Serial.begin(9600); // for the connect with the boared
+    Serial1.begin(9600);
     lcd.init();         // inicia o lcd
 
     pinMode(led, OUTPUT);
@@ -75,15 +76,12 @@ void loop()
     }
     lastButtonState = reading;
 
-    if (Serial.available() && (estadoBot > 0)) // se tiver mensagem espera o botão ser apertado
+    if (Serial.available()) // se tiver mensagem espera o botão ser apertado
     {
         estadoBotAnt = estadoBot; // troca o anterior
         input = Serial.read();    // read the input
         str.concat(input);
-        if (input == 'a' || input == 'A')
-        {
-            lA();
-        }
+        Serial1.write(input);
         if (input == 'a' || input == 'A')
         {
             lA();
@@ -237,12 +235,18 @@ void loop()
         //  lcd.setBacklight(HIGH);
         //  lcd.print(input);
         controleLCD = 1;
+        
     }
+    
     // printaLcd();
     if (controleLCD == 1)
     {
         if (!Serial.available())
         { // quando acabou de ler
+          if(str == "sos" || str == "SOS"){
+            //Serial.println("aqui");
+            Serial1.write(101);
+          }
             Serial.println(str);
             lcd.clear();
             lcd.setBacklight(HIGH);
@@ -269,7 +273,7 @@ void printaLcd()
     }
 }
 
-// Letter functions
+// Funções das Letras
 void lA()
 {
     ponto(); // letter A in morse code!
