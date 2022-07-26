@@ -9,7 +9,7 @@ void ponto() // Emit sound for 100 milliseconds
 {
     PORTC.RC1 = 0;
     //tone(buzzer, note, timeUnit);
-    delay_ms(200);
+    delay_ms(100);
     PORTC.RC1 = 1;
 }
 
@@ -17,18 +17,18 @@ void barra() // Emit sound for 300 milliseconds
 {
      PORTC.RC1 = 0;
     //tone(buzzer, note, timeUnit * 3);
-    delay_ms(400);
+    delay_ms(300);
     PORTC.RC1 = 1;
 }
 
 void letterPause() // Delay between letters for 300 milliseconds
 {
-    delay_ms(300);
+    delay_ms(150);
 }
 
 void wordPause()
 {
-    delay_ms(700);
+    delay_ms(350);
 }
 
     // Funções das Letras
@@ -66,7 +66,7 @@ void lE()
     ponto();
     letterPause();
 }
-void lF()
+void leF()
 {
     ponto();
     ponto();
@@ -324,6 +324,7 @@ void l9()
      TRISC.RC2 = 0;
      TRISC.RC1 = 0;
      TRISB =0;            // Define todos os pinos do PORTB como saída.
+     TRISD = 0;
      PORTB = 0;           // Colocar todos os pinos em nível baixo.
      PORTD = 0;
      ADCON1 = 0x0f;       // Configura todos canais como Digital.
@@ -335,11 +336,21 @@ void l9()
 
      while(1){
          if(UART1_Data_Ready()){  // Verifica se um dado foi recebido no buffer
-              if (input == 'a' || input == 'A')
-        {
-            lA();
-        }
-        if (input == 'a' || input == 'A')
+         input = UART1_Read();
+         if(input == 101){
+                  for(i = 0; i < 100; i++){
+                        PORTB=0x00;         // Todos os pinos do PORTB em 0.
+                        PORTD=0x00;
+                        Delay_ms(100);  // Esta função é interna do compilador, portanto o tempo é de 1000ms ou 1 segundo.
+                        PORTD=0xff;
+                        PORTB=0xff;       // Todos os pinos do PORTB em 1.
+                        Delay_ms(100);  // Aguarda novamente 1 segundo.
+                        }
+         }
+         if(strcmp(input, 'a') == 0 || strcmp(input, 'a')){
+                   lA();
+         }
+         if (input == 'a' || input == 'A')
         {
             lA();
         }
@@ -361,7 +372,7 @@ void l9()
         }
         if (input == 'f' || input == 'F')
         {
-            lF();
+            leF();
         }
         if (input == 'g' || input == 'G')
         {
@@ -487,11 +498,6 @@ void l9()
         {
             wordPause();
         }
-        // Serial.println(input);
-        //  lcd.clear();
-        //  lcd.setBacklight(HIGH);
-        //  lcd.print(input);;
     }
-     }
      }
      }
