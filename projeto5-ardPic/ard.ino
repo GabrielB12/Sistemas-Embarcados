@@ -20,20 +20,26 @@ void loop()
       }
       if(str == "LigarLed B7"){
           Serial1.write(1);
+          str = "";
       }
       else if(str == "DesligarLed B7"){
           Serial1.write(2);
+          str = "";
       }
       else if(str == "AcionarBuzzer"){
           Serial1.write(3);
+          str = "";
       } 
      else if(str == "DesligarBuzzer"){
           Serial1.write(4);
+          str = "";
       }
      else if(str == "LigarVento"){
           Serial1.write(5);
+          str = "";
       }
      else if(str == "DesligarVento"){
           Serial1.write(6);
+          str = "";
       }
      }
