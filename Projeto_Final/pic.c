@@ -1,221 +1,318 @@
-  char input;        // Variavel para armazenar o dado lido.
+// --- Ligações entre PIC e LCD ---
+sbit LCD_RS at RE2_bit;   // PINO 2 DO PORTD LIGADO AO RS DO DISPLAY
+sbit LCD_EN at RE1_bit;   // PINO 3 DO PORTD LIGADO AO EN DO DISPLAY
+sbit LCD_D7 at RD7_bit;  // PINO 7 DO PORTD LIGADO AO D7 DO DISPLAY
+sbit LCD_D6 at RD6_bit;  // PINO 6 DO PORTD LIGADO AO D6 DO DISPLAY
+sbit LCD_D5 at RD5_bit;  // PINO 5 DO PORTD LIGADO AO D5 DO DISPLAY
+sbit LCD_D4 at RD4_bit;  // PINO 4 DO PORTD LIGADO AO D4 DO DISPLAY
+
+// Selecionando direção de fluxo de dados dos pinos utilizados para a comunicação com display LCD
+sbit LCD_RS_Direction at TRISE2_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 2 DO PORTD
+sbit LCD_EN_Direction at TRISE1_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 3 DO PORTD
+sbit LCD_D7_Direction at TRISD7_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 7 DO PORTD
+sbit LCD_D6_Direction at TRISD6_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 6 DO PORTD
+sbit LCD_D5_Direction at TRISD5_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 5 DO PORTD
+sbit LCD_D4_Direction at TRISD4_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 4 DO PORTD  
+
+char input;        // Variavel para armazenar o dado lido.
   unsigned int Control = 1;  // +++++++ VARIAVEL DE CONTROLE DA COMUNICAÇÃO ++++++++
                              // LEMBRE DE ALTERAR ESSA VARIAVE TAMBEM NO ARDUINO
   char string[20];
   int i = 0;
   int timeUnit = 100;
 
-void ponto() // Emit sound for 100 milliseconds
+void ponto() // 100ms
 {
     PORTC.RC1 = 0;
-    //tone(buzzer, note, timeUnit);
     delay_ms(100);
     PORTC.RC1 = 1;
 }
 
-void barra() // Emit sound for 300 milliseconds
+void barra() // 300ms
 {
      PORTC.RC1 = 0;
-    //tone(buzzer, note, timeUnit * 3);
     delay_ms(300);
     PORTC.RC1 = 1;
 }
 
-void letterPause() // Delay between letters for 300 milliseconds
+void letterPause() // espera entre letras 400ms
 {
-    delay_ms(150);
+    delay_ms(400);
 }
 
-void wordPause()
+void wordPause() // espera entre palavras 600ms
 {
-    delay_ms(350);
+    delay_ms(600);
 }
 
-    // Funções das Letras
+    // Funções das Letras em código morse
 void lA()
 {
-    ponto(); // letter A in morse code!
+    ponto();
+    voidImprimePonto();
     barra();
+  voidImprimeBarra();
+    voidImprimeBarra();
     letterPause();
 }
 void lB()
 {
-    barra(); // same for B
+    barra();
+  voidImprimeBarra();
     ponto();
+    voidImprimePonto();
     ponto();
+    voidImprimePonto();
     ponto();
+    voidImprimePonto();
     letterPause();
 }
 void lC()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lD()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lE()
 {
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void leF()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lG()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lH()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lI()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lJ()
 {
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lK()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lL()
 {
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lM()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lN()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lO()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lP()
 {
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lQ()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lR()
 {
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lS()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 void lT()
 {
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lU()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lV()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lW()
 {
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lX()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lY()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 void lZ()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 
@@ -223,101 +320,159 @@ void lZ()
 void l0()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 
 void l1()
 {
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 
 void l2()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 
 void l3()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 
 void l4()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     barra();
+  voidImprimeBarra();
     letterPause();
 }
 
 void l5()
 {
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 
 void l6()
 {
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 
 void l7()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 
 void l8()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     ponto();
+  voidImprimePonto();
     letterPause();
 }
 
 void l9()
 {
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     barra();
+  voidImprimeBarra();
     ponto();
+  voidImprimePonto();
     letterPause();
+}
+
+voidImprimePonto(){
+    lcd_out(1, 1, ".");
+}
+
+voidImprimeBarra(){
+    lcd_out(1, 1, "-");
 }
 
   void main(){
@@ -333,6 +488,10 @@ void l9()
      UART1_Init(9600);  // Utiliza bibliotecas do compilador para configuração o Baud rate.
      PWM1_Init(5000);
      PWM1_Start();
+    
+     Lcd_Init();                               //Inicializa módulo LCD
+     Lcd_Cmd(_LCD_CURSOR_OFF);                 //Apaga cursor
+     Lcd_Cmd(_LCD_CLEAR);                      //Limpa display
 
      while(1){
          if(UART1_Data_Ready()){  // Verifica se um dado foi recebido no buffer
