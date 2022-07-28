@@ -21,6 +21,14 @@ char input;        // Variavel para armazenar o dado lido.
   int i = 0;
   int timeUnit = 100;
 
+voidImprimePonto(){
+    lcd_chr_cp(".");
+}
+
+voidImprimeBarra(){
+    lcd_chr_cp("-");
+}
+
 void ponto() // 100ms
 {
     PORTC.RC1 = 0;
@@ -465,14 +473,6 @@ void l9()
     ponto();
   voidImprimePonto();
     letterPause();
-}
-
-voidImprimePonto(){
-    lcd_chr_cp(".");
-}
-
-voidImprimeBarra(){
-    lcd_chr_cp("-");
 }
 
   void main(){
