@@ -468,11 +468,11 @@ void l9()
 }
 
 voidImprimePonto(){
-    lcd_out(1, 1, ".");
+    lcd_chr_cp(".");
 }
 
 voidImprimeBarra(){
-    lcd_out(1, 1, "-");
+    lcd_chr_cp("-");
 }
 
   void main(){
