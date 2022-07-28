@@ -12,7 +12,7 @@ sbit LCD_EN_Direction at TRISE1_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PIN
 sbit LCD_D7_Direction at TRISD7_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 7 DO PORTD
 sbit LCD_D6_Direction at TRISD6_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 6 DO PORTD
 sbit LCD_D5_Direction at TRISD5_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 5 DO PORTD
-sbit LCD_D4_Direction at TRISD4_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 4 DO PORTD  
+sbit LCD_D4_Direction at TRISD4_bit;  // SETA DIREÇÃO DO FLUXO DE DADOS DO PINO 4 DO PORTD
 
 char input;        // Variavel para armazenar o dado lido.
   unsigned int Control = 1;  // +++++++ VARIAVEL DE CONTROLE DA COMUNICAÇÃO ++++++++
@@ -22,17 +22,17 @@ char input;        // Variavel para armazenar o dado lido.
   int timeUnit = 100;
 
 void ImprimePonto(){
-    lcd_chr_cp(".");
+    lcd_chr_cp('.');
 }
 
 void ImprimeBarra(){
-    lcd_chr_cp("-");
+    lcd_chr_cp('-');
 }
 
 void ponto() // 100ms
 {
     PORTC.RC1 = 0;
-    delay_ms(100);
+    delay_ms(50);
     PORTC.RC1 = 1;
 }
 
@@ -484,7 +484,7 @@ void l9()
      PORTD = 0;
      ADCON1 = 0x0f;       // Configura todos canais como Digital.
      PORTC.RC2 = 1;
-    
+
     TRISA.RA2=0;         // Define o pino RA2 do PORTA como saida(Sele??o Display 1).
     TRISA.RA3=0;         // Define o pino RA3 do PORTA como saida(Sele??o Display 2).
     TRISA.RA4=0;         // Define o pino RA4 do PORTA como saida(Sele??o Display 3).
@@ -493,7 +493,7 @@ void l9()
      UART1_Init(9600);  // Utiliza bibliotecas do compilador para configuração o Baud rate.
      PWM1_Init(5000);
      PWM1_Start();
-    
+
      Lcd_Init();                               //Inicializa módulo LCD
      Lcd_Cmd(_LCD_CURSOR_OFF);                 //Apaga cursor
      Lcd_Cmd(_LCD_CLEAR);                      //Limpa display
@@ -501,7 +501,7 @@ void l9()
      while(1){
          if(UART1_Data_Ready()){  // Verifica se um dado foi recebido no buffer
          input = UART1_Read();
-         if(input == 101){
+         if(input == 10001){
                   for(i = 0; i < 100; i++){
                         PORTB=0x00;         // Todos os pinos do PORTB em 0.
                         PORTD=0x00;
@@ -510,9 +510,6 @@ void l9()
                         PORTB=0xff;       // Todos os pinos do PORTB em 1.
                         Delay_ms(100);  // Aguarda novamente 1 segundo.
                         }
-         }
-         if(strcmp(input, 'a') == 0 || strcmp(input, 'a')){
-                   lA();
          }
          if (input == 'a' || input == 'A')
         {
@@ -663,6 +660,7 @@ void l9()
             wordPause();
         }
     }
+    delay_ms(1000);
        Lcd_Cmd(_LCD_CURSOR_OFF);                 //Apaga cursor
         Lcd_Cmd(_LCD_CLEAR);                      //Limpa display
      }
