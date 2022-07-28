@@ -663,5 +663,7 @@ void l9()
             wordPause();
         }
     }
+       Lcd_Cmd(_LCD_CURSOR_OFF);                 //Apaga cursor
+        Lcd_Cmd(_LCD_CLEAR);                      //Limpa display
      }
      }
