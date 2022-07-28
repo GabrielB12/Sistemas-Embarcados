@@ -484,6 +484,11 @@ voidImprimeBarra(){
      PORTD = 0;
      ADCON1 = 0x0f;       // Configura todos canais como Digital.
      PORTC.RC2 = 1;
+    
+    TRISA.RA2=0;         // Define o pino RA2 do PORTA como saida(Sele??o Display 1).
+    TRISA.RA3=0;         // Define o pino RA3 do PORTA como saida(Sele??o Display 2).
+    TRISA.RA4=0;         // Define o pino RA4 do PORTA como saida(Sele??o Display 3).
+    TRISA.RA5=0;         // Define o pino RA5 do PORTA como saida(Sele??o Display 4).
 
      UART1_Init(9600);  // Utiliza bibliotecas do compilador para configuração o Baud rate.
      PWM1_Init(5000);
