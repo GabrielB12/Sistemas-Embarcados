@@ -21,11 +21,11 @@ char input;        // Variavel para armazenar o dado lido.
   int i = 0;
   int timeUnit = 100;
 
-voidImprimePonto(){
+void ImprimePonto(){
     lcd_chr_cp(".");
 }
 
-voidImprimeBarra(){
+void ImprimeBarra(){
     lcd_chr_cp("-");
 }
 
@@ -57,270 +57,270 @@ void wordPause() // espera entre palavras 600ms
 void lA()
 {
     ponto();
-    voidImprimePonto();
+    ImprimePonto();
     barra();
-  voidImprimeBarra();
-    voidImprimeBarra();
+  ImprimeBarra();
+    ImprimeBarra();
     letterPause();
 }
 void lB()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-    voidImprimePonto();
+    ImprimePonto();
     ponto();
-    voidImprimePonto();
+    ImprimePonto();
     ponto();
-    voidImprimePonto();
+    ImprimePonto();
     letterPause();
 }
 void lC()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lD()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lE()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void leF()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lG()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lH()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lI()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lJ()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lK()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lL()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lM()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lN()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lO()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lP()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lQ()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lR()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lS()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 void lT()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lU()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lV()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lW()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lX()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lY()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 void lZ()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 
@@ -328,150 +328,150 @@ void lZ()
 void l0()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 
 void l1()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 
 void l2()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 
 void l3()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 
 void l4()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     letterPause();
 }
 
 void l5()
 {
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 
 void l6()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 
 void l7()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 
 void l8()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 
 void l9()
 {
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     barra();
-  voidImprimeBarra();
+  ImprimeBarra();
     ponto();
-  voidImprimePonto();
+  ImprimePonto();
     letterPause();
 }
 
